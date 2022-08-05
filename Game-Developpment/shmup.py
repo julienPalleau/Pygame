@@ -2,6 +2,7 @@
 # https://www.youtube.com/watch?v=-5GNbL33hz0&list=PLsk-HSGFjnaH5yghzu7PcOzm9NhsW0Urw&index=5
 # https://www.youtube.com/watch?v=33g62PpFwsE&list=PLsk-HSGFjnaH5yghzu7PcOzm9NhsW0Urw&index=6
 # https://www.youtube.com/watch?v=mOckdKp3V38&list=PLsk-HSGFjnaH5yghzu7PcOzm9NhsW0Urw&index=7
+# https://www.youtube.com/watch?v=_y5U8tB36Vk&list=PLsk-HSGFjnaH5yghzu7PcOzm9NhsW0Urw&index=8
 
 # Shmup game
 import pygame
@@ -36,6 +37,8 @@ class Player(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(player_img, (50, 38))
         self.image.set_colorkey(BLACK)
         self.rect = self.image.get_rect()
+        self.radius = 20
+        # pygame.draw.circle(self.image, RED, self.rect.center, self.radius)
         self.rect.centerx = WIDTH / 2
         self.rect.bottom = HEIGHT - 10
         self.speedx = 0
@@ -66,6 +69,8 @@ class Mob(pygame.sprite.Sprite):
         self.image = meteor_img
         self.image.set_colorkey(BLACK)
         self.rect = self.image.get_rect()
+        self.radius = int(self.rect.width * .85 / 2)  # we compute the radius for the cicrle collision
+        # pygame.draw.circle(self.image, RED, self.rect.center, self.radius)
         self.rect.x = random.randrange(WIDTH - self.rect.width)
         self.rect.y = random.randrange(-100, -40)
         self.speedy = random.randrange(1, 8)
@@ -142,11 +147,13 @@ while running:
         all_sprites.add(m)
         mobs.add(m)
 
-    # check to see if a mob hit the player
+    # check to see if the player hit a mob
     # We want to check the player against the mobs group, so it tells us if any of the mobs hits the player.
     # hits is a list of the mobs that hit the player.
     hits = pygame.sprite.spritecollide(player, mobs,
-                                       False)  # False tell us if any mobs that get hit should be deleted or not
+                                       False, pygame.sprite.collide_circle)
+    # False tell us if any mobs that get hit should be deleted or not and pygame.sprite.collide_circle is to tell
+    # that we don't use a rectangle but a circle to detect collisions
 
     # if the list hits is empty you don't change running otherwise running is set to False
     if hits:
