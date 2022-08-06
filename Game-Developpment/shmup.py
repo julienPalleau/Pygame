@@ -68,12 +68,14 @@ def draw_shield_bar(surf, x, y, pct):  # pct means %
     pygame.draw.rect(surf, GREEN, fill_rect)
     pygame.draw.rect(surf, WHITE, outline_rect, 2)
 
+
 def draw_lives(surf, x, y, lives, img):
     for i in range(lives):
         img_rect = img.get_rect()
         img_rect.x = x + 30 * i
         img_rect.y = y
         surf.blit(img, img_rect)
+
 
 class Player(pygame.sprite.Sprite):
     def __init__(self):
