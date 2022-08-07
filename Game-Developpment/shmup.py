@@ -310,7 +310,6 @@ while running:
         expl = Explosion(hit.rect.center, 'lg')
         all_sprites.add(expl)
         if random.random() > 0.9:
-            print("test")
             pow = Pow(hit.rect.center)
             all_sprites.add(pow)
             powerups.add(pow)
