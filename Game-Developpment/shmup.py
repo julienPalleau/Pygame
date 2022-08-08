@@ -1,3 +1,6 @@
+# https://www.youtube.com/watch?v=VO8rTszcW4s&list=PLsk-HSGFjnaH5yghzu7PcOzm9NhsW0Urw&index=1
+# https://www.youtube.com/watch?v=Eltz-XJMxuU&list=PLsk-HSGFjnaH5yghzu7PcOzm9NhsW0Urw&index=2
+# https://www.youtube.com/watch?v=nGufy7weyGY&list=PLsk-HSGFjnaH5yghzu7PcOzm9NhsW0Urw&index=3
 # https://www.youtube.com/watch?v=nGufy7weyGY&list=PLsk-HSGFjnaH5yghzu7PcOzm9NhsW0Urw&index=4
 # https://www.youtube.com/watch?v=-5GNbL33hz0&list=PLsk-HSGFjnaH5yghzu7PcOzm9NhsW0Urw&index=5
 # https://www.youtube.com/watch?v=33g62PpFwsE&list=PLsk-HSGFjnaH5yghzu7PcOzm9NhsW0Urw&index=6
@@ -25,6 +28,8 @@ WIDTH = 480
 HEIGHT = 600
 FPS = 60
 POWERUP_TIME = 5000
+STAGE = 1000
+NB_MOBS = 0
 
 # define colors
 WHITE = (255, 255, 255)
@@ -168,6 +173,8 @@ class Player(pygame.sprite.Sprite):
 
 
 class Mob(pygame.sprite.Sprite):
+    counter = 0
+
     def __init__(self):
         super().__init__()
         self.image_orig = random.choice(meteor_images)
@@ -184,6 +191,7 @@ class Mob(pygame.sprite.Sprite):
         self.rot_speed = random.randint(-8, 8)
         self.last_update = pygame.time.get_ticks()  # here we count the time since the game started, we update the
         # value each time we rotate.
+        Mob.counter += 1
 
     def rotate(self):
         now = pygame.time.get_ticks()
@@ -344,7 +352,10 @@ while running:
     hits = pygame.sprite.groupcollide(mobs, bullets, True, True)  # True, True as we want mobs and bullets to be deleted
     for hit in hits:
         score += 50 - hit.radius
-        random.choice(expl_sounds).play().set_volume(0.2)
+        explosion_sound = random.choice(expl_sounds).play()
+        if explosion_sound:
+            explosion_sound.set_volume(0.2)
+
         expl = Explosion(hit.rect.center, 'lg')
         all_sprites.add(expl)
         if random.random() > 0.9:
@@ -352,6 +363,13 @@ while running:
             all_sprites.add(pow)
             powerups.add(pow)
         newmob()
+        if score > STAGE:
+            print("new mobs!")
+            STAGE += 1000
+            for i in range(3):
+                newmob()
+                NB_MOBS += (i * 8)
+                print(f"nombre de mobs = {NB_MOBS}")
 
     # check to see if a mob  hit the player
     # We want to check the player against the mobs group, so it tells us if any of the mobs hits the player.
