@@ -1,4 +1,7 @@
 """
+https://www.cours-gratuit.com/tutoriel-python/tutoriel-python-comment-crer-un-jeu-avec-pygame
+W:\Perso\backup\IT stuff\Cours de programmation\Python\GUI\PYGAME\cours-gratuit.com--id-11667.pdf
+
 Fonts
 """
 

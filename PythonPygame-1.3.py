@@ -1,5 +1,7 @@
 """
+https://inventwithpython.com/pygame/chapter2.html
 Primitive Drawing Functions
+W:\Perso\backup\IT stuff\Cours de programmation\Python\GUI\PYGAME\cours-gratuit.com--id-11667.pdf
 """
 # https://inventwithpython.com/pygame/
 import pygame, sys

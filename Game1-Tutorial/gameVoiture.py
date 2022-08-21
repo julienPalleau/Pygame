@@ -4,13 +4,8 @@ import random
 
 import pygame
 import sys
-from pygame.locals import (
-    K_LEFT,
-    K_RIGHT,
-    K_ESCAPE,
-    KEYDOWN,
-    QUIT,
-)
+from pygame.locals import *
+import random, time
 
 # Initializing
 pygame.init()
