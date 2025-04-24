@@ -12,9 +12,9 @@ CELL_CENTER = vec2(CELL_SIZE / 2)
 class TicTacToe:
     def __init__(self, game):
         self.game = game
-        self.field_image = self.get_scaled_image(path='field.png', res=[WIN_SIZE] * 2)
-        self.O_image = self.get_scaled_image(path='o.png', res=[CELL_SIZE] * 2)
-        self.X_image = self.get_scaled_image(path='x.png', res=[CELL_SIZE] * 2)
+        self.field_image = self.get_scaled_image(path='TicTacToe/field.png', res=[WIN_SIZE] * 2)
+        self.O_image = self.get_scaled_image(path='TicTacToe/o.png', res=[CELL_SIZE] * 2)
+        self.X_image = self.get_scaled_image(path='TicTacToe/x.png', res=[CELL_SIZE] * 2)
 
         self.game_array = [[INF, INF, INF],
                            [INF, INF, INF],
