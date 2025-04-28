@@ -1,5 +1,5 @@
 # https://www.youtube.com/watch?v=8OMghdHP-zs
-# Working with time 2:13:59
+# Sprite 1:56:30
 
 import pygame
 from os.path import join
@@ -68,7 +68,6 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-    # update
     all_sprites.update(dt)
 
     # draw the game
