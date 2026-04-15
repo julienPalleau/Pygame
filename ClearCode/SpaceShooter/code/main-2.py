@@ -1,5 +1,5 @@
 # https://www.youtube.com/watch?v=8OMghdHP-zs
-# Movement and delta time 1:31:21
+# Movement and delta time 1:31:21 - 1:56 We learn to use keyboard and movement
 
 import pygame
 from os.path import join

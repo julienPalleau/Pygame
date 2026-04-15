@@ -68,6 +68,7 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
+    # update
     all_sprites.update(dt)
 
     # draw the game
