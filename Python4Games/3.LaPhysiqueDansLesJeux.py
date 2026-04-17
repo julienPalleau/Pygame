@@ -55,7 +55,7 @@ Voici un exemple simple de détection de collision entre deux objets:
 #     pygame.draw.rect(screen, (255, 0, 0), rect1) # Dessiner rect1 en rouge
 #     pygame.draw.rect(screen, (0, 255, 0), rect2) # Dessiner rect2 en bleu
 #     pygame.display.flip()
-
+# pygame.quit()
 
 
 
@@ -82,63 +82,63 @@ Mouvement de base
 Le mouvement d'un objet est souvent contrôlé par sa vitesse(velocity), qui est mise à jour en fonction du temps. Par exemple, un objet qui se déplace à une
 vitesse constante sur l'axe X pourrait être mis à jour à chaque cycle de la boucle de jeu. 
 """
-import pygame
+# import pygame
 
-# Initialisation de Pygame
-pygame.init()
+# # Initialisation de Pygame
+# pygame.init()
 
-# Créer une fenêtre de jeu
-screen = pygame.display.set_mode((800, 600))
+# # Créer une fenêtre de jeu
+# screen = pygame.display.set_mode((800, 600))
 
-# Créer deux rectangles pour représenter les objets
-rect1 = pygame.Rect(100, 100, 50, 50) # Rectangle pour l'objet 1
-rect2 = pygame.Rect(300, 100, 50, 50) # Rectangle pour l'objet 2
+# # Créer deux rectangles pour représenter les objets
+# rect1 = pygame.Rect(100, 100, 50, 50) # Rectangle pour l'objet 1
+# rect2 = pygame.Rect(300, 100, 50, 50) # Rectangle pour l'objet 2
 
-# Variables pour la position et la vitesse de l'objet
-x, y = 100, 200
-speed_x, speed_y = 5, 0 # Mouvement constant à droite
+# # Variables pour la position et la vitesse de l'objet
+# x, y = 100, 200
+# speed_x, speed_y = 5, 0 # Mouvement constant à droite
 
-# Accélération vers la droite
-acceleration_x = 0.1
-velocity_x = 0
-position_x = 100
+# # Accélération vers la droite
+# acceleration_x = 0.1
+# velocity_x = 0
+# position_x = 100
 
-running = True
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
+# running = True
+# while running:
+#     for event in pygame.event.get():
+#         if event.type == pygame.QUIT:
+#             running = False
 
-    # Appliquer l'accélération à la vitesse
-    velocity_x += acceleration_x
+#     # Appliquer l'accélération à la vitesse
+#     velocity_x += acceleration_x
     
-    # Mettre à jour la position en fonction de la vitesse
-    position_x += velocity_x
+#     # Mettre à jour la position en fonction de la vitesse
+#     position_x += velocity_x
 
-    # Déplacer le rect1 à droite pour tester la collision
-    rect1.x += 1
+#     # Déplacer le rect1 à droite pour tester la collision
+#     rect1.x += 1
 
-    # Détection de collision entre rect1 et rect2
-    if rect1.colliderect(rect2):
-        print("Collision détectée!")
+#     # Détection de collision entre rect1 et rect2
+#     if rect1.colliderect(rect2):
+#         print("Collision détectée!")
 
-    # Mise à jour de la position
-    x += speed_x
-    y += speed_y
+#     # Mise à jour de la position
+#     x += speed_x
+#     y += speed_y
 
-    # Raffraîchir l'écran
-    screen.fill((255, 255, 255)) # Effacer l'écran avec une couleur blanche
-    pygame.draw.rect(screen, (255, 0, 0), rect1) # Dessiner rect1 en rouge
-    pygame.draw.rect(screen, (0, 255, 0), rect2) # Dessiner rect2 en bleu
-    pygame.draw.circle(screen, (0, 0, 255), (x, y), 20) # Dessiner un cercle représentant l'objet
-    pygame.draw.circle(screen, (0, 128, 128), (int(position_x), 300), 20) # Dessiner un cercle représentant l'objet
+#     # Raffraîchir l'écran
+#     screen.fill((255, 255, 255)) # Effacer l'écran avec une couleur blanche
+#     pygame.draw.rect(screen, (255, 0, 0), rect1) # Dessiner rect1 en rouge
+#     pygame.draw.rect(screen, (0, 255, 0), rect2) # Dessiner rect2 en bleu
+#     pygame.draw.circle(screen, (0, 0, 255), (x, y), 20) # Dessiner un cercle représentant l'objet
+#     pygame.draw.circle(screen, (0, 128, 128), (int(position_x), 300), 20) # Dessiner un cercle représentant l'objet
 
-    pygame.display.flip()
+#     pygame.display.flip()
 
-    pygame.time.Clock().tick(60) # Limiter à 60 FPS
+#     pygame.time.Clock().tick(60) # Limiter à 60 FPS
 
-    pygame.display.flip()
-
+#     pygame.display.flip()
+# 
 
 
 """
@@ -149,9 +149,113 @@ de créer des mouvements plus naturels et réalistes.
 
 Simuler la gravité
 
+Pour simuler la gravité, il suffit d'appliquer une force constante vers le bas sur l'objet. Cette force augmente la vitesse de l'objet,
+ce qui simule une chute.
 
+Voici un exemple simple où un objet tombe sous l'effet de la gravité:
+"""
+# import pygame
+
+# # Initialisation de Pygame
+# pygame.init()
+
+# # Créer une fenêtre de jeu
+# screen = pygame.display.set_mode((800, 600))
+# pygame.display.set_caption("Gravity")
+
+# x, y = 100, 100
+# velocity_y = 0
+# gravity = 0.5 # Force constante vers le bas
+# running = True
+
+# while running:
+#     # Appliquer la gravité à la vitesse
+#     velocity_y += gravity
+#     y += velocity_y
+
+#     # Empêcher l'objet de tomber en dessous du sol
+#     if y > 600: # Sol à 600 pixels
+#        
+#         velocity_y = 0 # Stopper la chute
+
+#     # Afficher l'objet
+#     screen.fill((255, 255, 255)) # Effacer l'écran avec une couleur blanche
+#     pygame.draw.circle(screen, (0, 0, 255), (x, int(y)), 20) # Dessiner un cercle représentant l'objet
+#     pygame.display.flip()
+
+#     pygame.time.Clock().tick(60) # Limiter à 60 FPS
+# pygame.quit()
+"""
+Dans cet exemple:
+    + gravity = 0.5: La gravité est appliquée à chaque cycle de la boucle de jeu, augmentant la vitesse verticale de l'objet au fil du temps.
+    + Collision avec le sol: Lorsque l'objet atteint le sol (y > 600), sa vitesse verticale est réinitialisée à zéro pour simuler un atterrissage.
 """
 
+"""
+Simuler l'inertie
 
+L'inertie est la tendance d'un objet à continuer de se déplacer dans la même direction jusqu'à ce qu'une force s'y oppose (comme la friction ou une 
+collision). Dans un jeu, cela peut être simulé en laissant l'objet continuer à bouger avec sa vitesse actuelle jusqu'à ce qu'il rencontre un obstacle ou que sa
+vitesse diminue à cause de forces opposées (comme le frottement de l'air).
 
-    
+Par exemple, si un objet en mouvement horizontal continuerait de se déplacer même après que le joueur ait relâché la touche de déplacement, ♂ moins que la
+vitesse diminue à cause des forces opposées (comme le frottement de l'air).
+
+Par exemple, un objet en mouvement horizontal continuerait de se déplacer même après que le joueur ait relâché la touche de déplacement, à moins que la
+friction ou une autre force ne l'arrête.
+"""
+import pygame
+import time
+
+pygame.init()
+
+screen = pygame.display.set_mode((800, 600))
+pygame.display.set_caption("Inertia")   
+
+# Appliquer une légère friction pour ralentir l'objet
+friction = 0.98
+running = True
+
+x, y = 50, 50
+
+velocity_x = 10
+velocity_y = 0
+gravity = 0.5 # Force constante vers le bas
+running = True
+
+while running:
+    # Appliquer la gravité à la vitesse
+    friction = 0.98
+
+    velocity_y += gravity
+    y += velocity_y
+
+    # Empêcher l'objet de tomber en dessous du sol
+    if y > 580: # Sol à 600 pixels
+        y = 580
+        velocity_y = 0 # Stopper la chute
+
+    # Appliquer la friction à la vitesse
+    velocity_x *= friction
+    x += velocity_x
+
+    # Afficher l'objet
+    screen.fill((255, 255, 255)) # Effacer l'écran avec une couleur blanche
+    pygame.draw.circle(screen, (0, 200, 255), (x, int(y)), 20) # Dessiner un cercle représentant l'objet
+    pygame.draw.circle(screen, (0, 0, 255), (int(x+100), 300), 20) # Dessiner un cercle représentant l'objet
+    pygame.display.flip()   
+    clock = pygame.time.Clock().tick(60) # Limiter à 60 FPS
+
+    if velocity_x < 0.1:
+        running = False
+pygame.quit()
+"""
+Conclusion
+
+Les concepts de physique dans les jeux vidéo sont essentiels pour donner vie à vos projets en créant des interactions réalistes et immersives.
+La gestion des collisions, l'application de forces et la simulation de la gravité et de l'inertie permettent de créer des mouvements crédibles
+et d'améliorer l'expérience du joueur.
+
+En maîtrisant ces techniques, vous pourrez concevoir des jeux où les objets interagissent de manière fluide, simulant les lois du monde physique et
+enrichissant le gameplay.
+"""
